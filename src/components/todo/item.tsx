@@ -1,8 +1,9 @@
 import React from 'react';
+import clsx from 'clsx';
 import { TTodoItem } from '../../types/common';
 
 type TItemProps = {
-  item: TTodoItem
+  item: TTodoItem;
   onDestroy: (e?: React.SyntheticEvent) => void;
   onToggle: (e?: React.ChangeEvent<HTMLInputElement>) => void;
 };
@@ -13,9 +14,10 @@ const Item = ({
   onToggle
 }: TItemProps) => {
   return (
-    <li>
+    <li className={clsx(item.completed && 'completed')}>
       <div className="view">
         <input
+          checked={item.completed}
           type="checkbox"
           className="toggle"
           onChange={onToggle}
