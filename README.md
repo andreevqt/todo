@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+![CI](https://github.com/qprquo/todo/actions/workflows/build_test_react.yml/badge.svg)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
