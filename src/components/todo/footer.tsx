@@ -18,7 +18,6 @@ const Footer = ({
   onClearClick,
   hasCompleted = false
 }: TFooterProps) => {
-
   const handleClick = (name: string) => (e: React.SyntheticEvent) => {
     e.preventDefault();
     onFilterChange(name);
@@ -38,7 +37,7 @@ const Footer = ({
             <li key={idx}>
               <a
                 href="#"
-                className={clsx(filter === currentFilter && 'selected')}
+                className={clsx({ selected: filter === currentFilter })}
                 onClick={handleClick(filter)}
               >
                 {filter}
