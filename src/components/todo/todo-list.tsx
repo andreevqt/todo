@@ -9,9 +9,11 @@ const FILTERS = ['All', 'Active', 'Completed'];
 const TodoList = () => {
   const [items, setItems] = useState<TTodoItem[]>([{
     completed: false,
+    editing: false,
     title: 'Pay electric bill'
   }, {
     completed: false,
+    editing: false,
     title: 'Walk the dog'
   }]);
   const [value, setValue] = useState('');
@@ -61,9 +63,29 @@ const TodoList = () => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.code === 'Enter' || e.code == 'NumpadEnter') {
-      setItems([...items, { completed: false, title: value }]);
+      setItems([...items, { completed: false, editing: false, title: value }]);
       setValue('');
     }
+  };
+
+  const onItemDoubleClick = (idx: number) => () => {
+    setItems(items.map((item, i) => i === idx
+      ? { ...item, editing: true }
+      : item
+    ));
+  };
+
+  const onItemChange = (idx: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    setItems(items.map((item, i) => i === idx
+      ? { ...item, title: e.target.value }
+      : item
+    ));
+  };
+
+  const onItemBlur = () => {
+    setItems(items.map((item) => ({
+      ...item, editing: false
+    })));
   };
 
   const toggleAll = () => {
@@ -92,6 +114,9 @@ const TodoList = () => {
                 <Item
                   key={idx}
                   item={item}
+                  onBlur={onItemBlur}
+                  onChange={onItemChange(idx)}
+                  onDoubleClick={onItemDoubleClick(idx)}
                   onDestroy={() => onDestroy(idx)}
                   onToggle={() => onToggle(idx)}
                 />
