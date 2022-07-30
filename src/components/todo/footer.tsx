@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 type TFooterProps = {
   left: number;
@@ -7,6 +7,7 @@ type TFooterProps = {
   onFilterChange: (name: string) => void;
   onClearClick: (e: React.SyntheticEvent) => void;
   filters: string[];
+  hasCompleted?: boolean;
 };
 
 const Footer = ({
@@ -14,7 +15,8 @@ const Footer = ({
   filters,
   currentFilter,
   onFilterChange,
-  onClearClick
+  onClearClick,
+  hasCompleted = false
 }: TFooterProps) => {
 
   const handleClick = (name: string) => (e: React.SyntheticEvent) => {
@@ -45,13 +47,18 @@ const Footer = ({
           ))
         }
       </ul>
-      <button
-        onClick={onClearClick}
-        className="clear-completed"
-        type="button"
-      >
-        Clear completed
-      </button>
+      {
+        hasCompleted && (
+          <button
+            data-testid="clear"
+            onClick={onClearClick}
+            className="clear-completed"
+            type="button"
+          >
+            Clear completed
+          </button>
+        )
+      }
     </footer>
   );
 };

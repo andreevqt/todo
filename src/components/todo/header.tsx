@@ -17,6 +17,7 @@ const Header = ({
       <input
         placeholder="What needs to be done?"
         className="new-todo"
+        data-testid="new-todo"
         value={value}
         onKeyDown={handleKeyDown}
         onChange={handleChange}

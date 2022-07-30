@@ -7,7 +7,13 @@ import Footer from './footer';
 const FILTERS = ['All', 'Active', 'Completed'];
 
 const TodoList = () => {
-  const [items, setItems] = useState<TTodoItem[]>([]);
+  const [items, setItems] = useState<TTodoItem[]>([{
+    completed: false,
+    title: 'Pay electric bill'
+  }, {
+    completed: false,
+    title: 'Walk the dog'
+  }]);
   const [value, setValue] = useState('');
   const [currentFilter, setCurrentFilter] = useState('All');
 
@@ -22,6 +28,11 @@ const TodoList = () => {
 
   const left = useMemo(
     () => items.reduce((acc, curr) => !curr.completed ? ++acc : acc, 0),
+    [items]
+  );
+
+  const hasCompleted = useMemo(
+    () => items.some((item) => item.completed),
     [items]
   );
 
@@ -94,6 +105,7 @@ const TodoList = () => {
           onClearClick={onClearClick}
           currentFilter={currentFilter}
           onFilterChange={onFilterChange}
+          hasCompleted={hasCompleted}
         />
       </div>
     </section>

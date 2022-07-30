@@ -14,7 +14,7 @@ const Item = ({
   onToggle
 }: TItemProps) => {
   return (
-    <li className={clsx(item.completed && 'completed')}>
+    <li className={clsx(item.completed && 'completed')} data-testid="item">
       <div className="view">
         <input
           checked={item.completed}
