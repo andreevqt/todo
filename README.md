@@ -1,8 +1,8 @@
-# Getting Started with Create React App
+# TODO app using react
 
 [![CI](https://github.com/qprquo/todo/actions/workflows/build_test_react.yml/badge.svg?branch=master)](https://github.com/qprquo/todo/actions/workflows/build_test_react.yml)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[DEMO](https://todo-qprquo.vercel.app/)
 
 ## Available Scripts
 
