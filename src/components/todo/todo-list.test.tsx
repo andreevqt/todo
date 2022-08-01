@@ -59,7 +59,7 @@ describe('TodoList component', () => {
       const elements = screen.getAllByTestId('item');
       expect(elements.length).toBe(1);
 
-      expect(screen.queryAllByTestId('Pay electric bill')).toEqual([]);
+      expect(screen.queryAllByText('Pay electric bill')).toEqual([]);
     });
 
     it('can filter for completed tasks', async () => {
